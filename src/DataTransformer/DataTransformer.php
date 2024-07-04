@@ -4,7 +4,7 @@ namespace App\DataTransformer;
 
 use App\Dto\EntrepriseDto;
 use App\Dto\EtablissementDto;
-use APP\DataTransformer\TransformerInterface;
+use App\DataTransformer\TransformerInterface;
 
 class DataTransformer implements TransformerInterface
 {
@@ -12,8 +12,11 @@ class DataTransformer implements TransformerInterface
     {
 
         $dataEntreprise = new EntrepriseDto(
-            $data['siren'], $data['denomination'], $data['forme_juridique'], 
-            new \DateTime($data['date_immatriculation']), $data['capital']);
+            $data['entreprise']['siren'], 
+            $data['entreprise']['denomination'], 
+            $data['entreprise']['formeJuridique'], 
+            new \DateTime($data['entreprise']['dateImmat']), 
+            $data['description']['montantCapital']);
 
         return $dataEntreprise;
     }

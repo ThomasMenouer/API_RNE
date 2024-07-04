@@ -12,29 +12,39 @@ class Entreprises
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $siren = null;
+    private string $siren;
 
     #[ORM\Column(length: 255)]
-    private ?string $denomination = null;
+    private string $denomination;
 
     #[ORM\Column(length: 255)]
-    private ?string $forme_juridique = null;
+    private string $forme_juridique;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_immatriculation = null;
+    private \DateTimeInterface $date_immatriculation;
 
     #[ORM\Column]
-    private ?int $capital = null;
+    private float $capital;
 
-    public function getId(): ?int
+    public function __construct(string $siren, string $denomination, string $forme_juridique, \DateTimeInterface $date_immatriculation, float $capital)
+    {
+        $this->siren = $siren;
+        $this->denomination = $denomination;
+        $this->forme_juridique = $forme_juridique;
+        $this->date_immatriculation = $date_immatriculation;
+        $this->capital = $capital;
+
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getSiren(): ?string
+    public function getSiren(): string
     {
         return $this->siren;
     }
@@ -46,7 +56,7 @@ class Entreprises
         return $this;
     }
 
-    public function getDenomination(): ?string
+    public function getDenomination(): string
     {
         return $this->denomination;
     }
@@ -58,7 +68,7 @@ class Entreprises
         return $this;
     }
 
-    public function getFormeJuridique(): ?string
+    public function getFormeJuridique(): string
     {
         return $this->forme_juridique;
     }
@@ -82,12 +92,12 @@ class Entreprises
         return $this;
     }
 
-    public function getCapital(): ?int
+    public function getCapital(): float
     {
         return $this->capital;
     }
 
-    public function setCapital(int $capital): static
+    public function setCapital(float $capital): static
     {
         $this->capital = $capital;
 

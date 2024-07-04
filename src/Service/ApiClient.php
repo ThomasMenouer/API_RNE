@@ -9,27 +9,51 @@ class ApiClient
 
     private HttpClientInterface $client;
     private string $baseUrl;
-    private string $apiKey;
+    private ?string $token = null;
 
-    public function __construct(HttpClientInterface $client, string $baseUrl, string $apiKey)
+    public function __construct(HttpClientInterface $client, string $baseUrl)
     {
         $this->client = $client;
         $this->baseUrl = $baseUrl;
-        $this->apiKey = $apiKey;
+    }
+
+    public function authenticate(string $username, string $password): void
+    {
+        $response = $this->client->request('POST', $this->baseUrl . '/sso/login', [
+            'json' => [
+                'username' => $username,
+                'password' => $password,
+            ],
+        ]);
+
+        $data = $response->toArray();
+        $this->token = $data['token'];
+
+        //dd($data);
     }
 
     public function fetchApiData(string $siren): array
     {
-        $response = $this->client->request(
-            'GET', 
-            "{$this->baseUrl}/{$siren}", [
-                'headers' => [
-                    'Authorization' => "Bearer {$this->apiKey}",
-                ],
-            ]
-        );
 
-        return $response->toArray();
+        if ($this->token === null){
+            throw new \Exception('Client is not authenticated');
+        }
+
+            $response = $this->client->request(
+                'GET', 
+                $this->baseUrl . '/companies/' . $siren, [
+                    'headers' => [
+                        'Authorization' => "Bearer {$this->token}",
+                    ],
+                ]
+            );
+
+            $data = $response->toArray();
+
+            //dd($data['formality']['content']['personneMorale']['identite']);
+
+            return $data['formality']['content']['personneMorale']['identite'];
+
     }
 
 }

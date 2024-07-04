@@ -11,26 +11,26 @@ class Etablissements
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $siret = null;
+    private string $siret;
 
     #[ORM\Column(length: 255)]
-    private ?string $code_pays = null;
+    private string $code_pays;
 
     #[ORM\Column(length: 255)]
-    private ?string $principal = null;
+    private string $principal;
 
     #[ORM\Column(length: 255)]
-    private ?string $adresse = null;
+    private string $adresse;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getSiret(): ?string
+    public function getSiret(): string
     {
         return $this->siret;
     }
@@ -42,7 +42,7 @@ class Etablissements
         return $this;
     }
 
-    public function getCodePays(): ?string
+    public function getCodePays(): string
     {
         return $this->code_pays;
     }
