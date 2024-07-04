@@ -25,6 +25,9 @@ class Etablissement
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
+    #[ORM\ManyToOne(targetEntity: Entreprise::class)]
+    private $entreprise;
+
     public function getId(): ?int
     {
         return $this->id;
