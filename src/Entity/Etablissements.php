@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EtablissementRepository;
+use App\Repository\EtablissementsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EtablissementRepository::class)]
-class Etablissement
+#[ORM\Entity(repositoryClass: EtablissementsRepository::class)]
+class Etablissements
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,9 +24,6 @@ class Etablissement
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
-
-    #[ORM\ManyToOne(targetEntity: Entreprise::class)]
-    private $entreprise;
 
     public function getId(): ?int
     {
