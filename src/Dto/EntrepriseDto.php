@@ -20,31 +20,4 @@ class EntrepriseDto
         $this->dateImmatriculation = $dateImmatriculation;
         $this->capital = $capital;
     }
-
-
-    // Getters
-    public function getSiren(): string
-    {
-        return $this->siren;
-    }
-
-    public function getDenomination(): string
-    {
-        return $this->denomination;
-    }
-
-    public function getFormeJuridique(): string
-    {
-        return $this->formeJuridique;
-    }
-
-    public function getDateImmatriculation(): DateTime
-    {
-        return $this->dateImmatriculation;
-    }
-
-    public function getCapital(): float
-    {
-        return $this->capital;
-    }
 }

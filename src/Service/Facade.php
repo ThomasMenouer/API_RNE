@@ -45,11 +45,11 @@ class Facade
     {
         //dd($entrepriseDto);
         $entreprise = new Entreprises(
-            $entrepriseDto->getSiren(),
-            $entrepriseDto->getDenomination(),
-            $entrepriseDto->getFormeJuridique(),
-            $entrepriseDto->getDateImmatriculation(),
-            $entrepriseDto->getCapital()
+            $entrepriseDto->siren,
+            $entrepriseDto->denomination,
+            $entrepriseDto->formeJuridique,
+            $entrepriseDto->dateImmatriculation,
+            $entrepriseDto->capital
         );
 
         $this->entityManager->persist($entreprise);
