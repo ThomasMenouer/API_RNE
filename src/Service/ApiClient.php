@@ -29,7 +29,6 @@ class ApiClient
         $data = $response->toArray();
         $this->token = $data['token'];
 
-        //dd($data);
     }
 
     public function fetchApiData(string $siren): array
@@ -39,20 +38,18 @@ class ApiClient
             throw new \Exception('Client is not authenticated');
         }
 
-            $response = $this->client->request(
-                'GET', 
-                $this->baseUrl . '/companies/' . $siren, [
-                    'headers' => [
-                        'Authorization' => "Bearer {$this->token}",
-                    ],
-                ]
-            );
+        $response = $this->client->request(
+            'GET', 
+            $this->baseUrl . '/companies/' . $siren, [
+                'headers' => [
+                    'Authorization' => "Bearer {$this->token}",
+                ],
+            ]
+        );
 
             $data = $response->toArray();
 
-            //dd($data['formality']['content']['personneMorale']['identite']);
-
-            return $data['formality']['content']['personneMorale']['identite'];
+        return $data['formality']['content']['personneMorale']['identite'];
 
     }
 

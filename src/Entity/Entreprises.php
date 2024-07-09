@@ -27,9 +27,9 @@ class Entreprises
     private \DateTimeInterface $date_immatriculation;
 
     #[ORM\Column]
-    private float $capital;
+    private int $capital;
 
-    public function __construct(string $siren, string $denomination, string $forme_juridique, \DateTimeInterface $date_immatriculation, float $capital)
+    public function __construct(string $siren, string $denomination, string $forme_juridique, \DateTimeInterface $date_immatriculation, int $capital)
     {
         $this->siren = $siren;
         $this->denomination = $denomination;
@@ -92,14 +92,14 @@ class Entreprises
         return $this;
     }
 
-    public function getCapital(): float
+    public function getCapital(): int
     {
         return $this->capital;
     }
 
     public function setCapital(float $capital): static
     {
-        $this->capital = $capital;
+        $this->capital = settype($capital * 100, 'int');
 
         return $this;
     }

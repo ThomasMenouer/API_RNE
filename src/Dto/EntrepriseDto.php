@@ -10,9 +10,9 @@ class EntrepriseDto
     public string $denomination;
     public string $formeJuridique;
     public \DateTime $dateImmatriculation;
-    public float $capital;
+    public int $capital;
 
-    public function __construct(string $siren, string $denomination, string $formeJuridique, \DateTime $dateImmatriculation, float $capital) {
+    public function __construct(string $siren, string $denomination, string $formeJuridique, \DateTime $dateImmatriculation, int $capital) {
         
         $this->siren = $siren;
         $this->denomination = $denomination;

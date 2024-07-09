@@ -28,7 +28,7 @@ class GetApiDataCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('siren', InputArgument::OPTIONAL, 'Siren')
+            ->addArgument('siren', InputArgument::REQUIRED, 'Siren')
         ;
     }
 
@@ -43,8 +43,6 @@ class GetApiDataCommand extends Command
 
         // Fetch data from API
         $entrepriseDto = $this->facade->getData($siren);
-
-        //dd($entrepriseDto);
 
         // Save data to database
         $this->facade->saveData($entrepriseDto);
