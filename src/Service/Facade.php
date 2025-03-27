@@ -35,7 +35,6 @@ class Facade
         $data = $this->apiClient->fetchApiData($siren);
         $entrepriseDto = $this->transformer->transform($data);
 
-        // dd($entrepriseDto);
         return $entrepriseDto;
         
     }
@@ -43,7 +42,6 @@ class Facade
     // this function can't be here
     public function saveData(EntrepriseDto $entrepriseDto): void
     {
-        //dd($entrepriseDto);
         $entreprise = new Entreprises(
             $entrepriseDto->getSiren(),
             $entrepriseDto->getDenomination(),
